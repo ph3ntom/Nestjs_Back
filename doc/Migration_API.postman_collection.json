@@ -1,0 +1,283 @@
+{
+  "info": {
+    "name": "Migration API Collection",
+    "description": "NestJS 마이그레이션 시스템 API 테스트 컬렉션",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Database Management",
+      "item": [
+        {
+          "name": "Initialize Database",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/init",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "init"]
+            },
+            "description": "데이터베이스를 초기화하고 마이그레이션을 실행합니다."
+          }
+        },
+        {
+          "name": "Run Migrations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/run",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "run"]
+            },
+            "description": "대기 중인 모든 마이그레이션을 실행합니다."
+          }
+        },
+        {
+          "name": "Revert Migration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/revert",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "revert"]
+            },
+            "description": "마지막 마이그레이션을 되돌립니다."
+          }
+        },
+        {
+          "name": "Database Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/status",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "status"]
+            },
+            "description": "데이터베이스 연결 상태와 통계 정보를 조회합니다."
+          }
+        }
+      ],
+      "description": "데이터베이스 기본 관리 API"
+    },
+    {
+      "name": "2. Migration Management",
+      "item": [
+        {
+          "name": "Get Migration Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/migrations",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "migrations"]
+            },
+            "description": "실행된 마이그레이션과 대기 중인 마이그레이션 목록을 조회합니다."
+          }
+        },
+        {
+          "name": "Run Migration Up To",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/run-to/AddTestUsers1722000001000",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "run-to", "AddTestUsers1722000001000"]
+            },
+            "description": "지정된 마이그레이션까지만 실행합니다."
+          }
+        },
+        {
+          "name": "Test Migrations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/test",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "test"]
+            },
+            "description": "모든 마이그레이션을 테스트하고 결과를 반환합니다."
+          }
+        }
+      ],
+      "description": "마이그레이션 관리 API"
+    },
+    {
+      "name": "3. Test Data Management",
+      "item": [
+        {
+          "name": "Seed Test Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/seed",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "seed"]
+            },
+            "description": "사전 정의된 테스트 사용자를 생성합니다."
+          }
+        },
+        {
+          "name": "Clear Test Data",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/clear",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "clear"]
+            },
+            "description": "모든 테스트 데이터를 삭제합니다."
+          }
+        }
+      ],
+      "description": "테스트 데이터 관리 API"
+    },
+    {
+      "name": "4. Data Validation",
+      "item": [
+        {
+          "name": "Validate Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/validate-users",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "validate-users"]
+            },
+            "description": "데이터베이스의 사용자 데이터 무결성을 검사합니다."
+          }
+        }
+      ],
+      "description": "데이터 검증 API"
+    },
+    {
+      "name": "5. Integration Tests",
+      "item": [
+        {
+          "name": "Full Database Test",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/full-test",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "full-test"]
+            },
+            "description": "데이터베이스 초기화, 마이그레이션, 검증을 한 번에 수행합니다."
+          }
+        }
+      ],
+      "description": "통합 테스트 API"
+    },
+    {
+      "name": "6. Developer Tools",
+      "item": [
+        {
+          "name": "Sync Schema (Dev Only)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/migration/sync",
+              "host": ["{{BASE_URL}}"],
+              "path": ["migration", "sync"]
+            },
+            "description": "엔티티 정의와 데이터베이스 스키마를 동기화합니다. (개발환경에서만 사용)"
+          }
+        }
+      ],
+      "description": "개발자 도구 API"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// 요청 전 실행되는 스크립트",
+          "console.log('API 요청 시작:', pm.info.requestName);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// 응답 후 실행되는 테스트",
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test('Response has success field', function () {",
+          "    const jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('success');",
+          "});",
+          "",
+          "pm.test('Response time is less than 5000ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3001",
+      "type": "string",
+      "description": "API 서버 기본 URL"
+    }
+  ]
+}
