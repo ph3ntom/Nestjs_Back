@@ -5,7 +5,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
+import { QuestionModule } from './question/question.module';
 import { User } from './auth/entities/user.entity';
+import { Question } from './question/entities/question.entity';
+import { Answer } from './question/entities/answer.entity';
 
 @Module({
   imports: [
@@ -19,7 +22,7 @@ import { User } from './auth/entities/user.entity';
       username: process.env.DB_USERNAME || 'phantom',
       password: process.env.DB_PASSWORD || 'ehy1123?',
       database: process.env.DB_NAME || 'node',
-      entities: [User],
+      entities: [User, Question, Answer],
       migrations: ['dist/migrations/**/*{.ts,.js}'],
       synchronize: false,
       logging: true,
@@ -28,6 +31,7 @@ import { User } from './auth/entities/user.entity';
     }),
     DatabaseModule,
     AuthModule,
+    QuestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -28,6 +28,12 @@ export class User {
   })
   role: UserRole;
 
+  @Column({ nullable: true })
+  image: string;
+
+  @Column({ type: 'int', default: 0 })
+  reputation: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

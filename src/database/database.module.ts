@@ -6,12 +6,14 @@ import { TestDataService } from './test-data.service';
 import { MigrationService } from './migration.service';
 import { MigrationController } from './migration.controller';
 import { User } from '../auth/entities/user.entity';
+import { Question } from '../question/entities/question.entity';
+import { Answer } from '../question/entities/answer.entity';
 
 @Global()
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Question, Answer]),
   ],
   controllers: [MigrationController],
   providers: [DatabaseService, TestDataService, MigrationService],

@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from './src/auth/entities/user.entity';
+import { Question } from './src/question/entities/question.entity';
+import { Answer } from './src/question/entities/answer.entity';
 
 export default new DataSource({
   type: 'mysql',
@@ -8,7 +10,7 @@ export default new DataSource({
   username: process.env.DB_USERNAME || 'phantom',
   password: process.env.DB_PASSWORD || 'ehy1123?',
   database: process.env.DB_NAME || 'node',
-  entities: [User],
+  entities: [User, Question, Answer],
   migrations: ['src/migrations/**/*{.ts,.js}'],
   synchronize: false,
   logging: true,

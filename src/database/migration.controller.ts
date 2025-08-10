@@ -299,4 +299,101 @@ export class MigrationController {
       };
     }
   }
+
+  /**
+   * 질문 테스트 데이터만 생성
+   */
+  @Post('seed-questions')
+  async seedQuestions() {
+    try {
+      this.logger.log('Seeding question data...');
+      
+      // 사용자 확인
+      const users = await this.testDataService.userRepository.find({ take: 3 });
+      if (users.length < 3) {
+        return {
+          success: false,
+          message: 'Not enough users found. Need at least 3 users.',
+        };
+      }
+
+      // 질문 생성
+      const testQuestions = [
+        {
+          title: "Why did Vue choose a reactivity-based state management approach, and why does Vue 3 support both 'ref()' and 'reactive()'?",
+          description: "I'm curious about the background and philosophy behind Vue's decision to adopt a reactivity-based state management approach. I understand the various benefits of using a reactive state...",
+          votes: 0,
+          answers: 0,
+          views: 2,
+          tags: ["vue.js", "vuejs2", "vuejs3", "reactive"],
+          userId: users[0].mbrId,
+        },
+        {
+          title: "How to find the start of a substring that isn't proceeded by a certain character, and ends with a character not proceeded by a character, in regex",
+          description: "So, I have a regex problem I'm trying to solve and can't figure out. I need to find a string that starts with R or K, but not followed by a #, continuing onwards til it finds another R or K which...",
+          votes: 0,
+          answers: 0,
+          views: 5,
+          tags: ["regex", "string"],
+          userId: users[1].mbrId,
+        },
+        {
+          title: "SignalR in dotnet 9 and Angular v19 errors - Websockets issues",
+          description: "here is errors from Chrome Debugger's screen: [2025-03-14T07:24:52.776Z] Information: Normalizing '/downloadHub' to 'https://127.0.0.1:63349/downloadHub'. Utils.js:148 [2025-03-14T07:24:52.776Z]...",
+          votes: 0,
+          answers: 0,
+          views: 5,
+          tags: [".net", "angular", "asp.net-core-signalr"],
+          userId: users[2].mbrId,
+        },
+      ];
+
+      const questions = this.testDataService.questionRepository.create(testQuestions);
+      await this.testDataService.questionRepository.save(questions);
+
+      // 질문 6번에 대한 답변 자동 생성
+      try {
+        await this.testDataService.seedTestAnswers();
+        this.logger.log('Test answers also created for question 6');
+      } catch (error) {
+        this.logger.warn('Could not create test answers:', error.message);
+      }
+
+      return {
+        success: true,
+        message: `${testQuestions.length} test questions and answers created successfully`,
+      };
+    } catch (error) {
+      this.logger.error('Question seeding failed', error);
+      return {
+        success: false,
+        message: 'Question seeding failed',
+        error: error.message,
+      };
+    }
+  }
+
+  /**
+   * 답변 테스트 데이터 생성
+   */
+  @Post('seed-answers')
+  async seedAnswers() {
+    try {
+      this.logger.log('Seeding answer data...');
+      
+      await this.testDataService.seedTestAnswers();
+      
+      return {
+        success: true,
+        message: 'Test answers created successfully',
+      };
+    } catch (error) {
+      this.logger.error('Answer seeding failed', error);
+      return {
+        success: false,
+        message: 'Answer seeding failed',
+        error: error.message,
+      };
+    }
+  }
 }
