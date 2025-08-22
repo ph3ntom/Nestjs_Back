@@ -42,7 +42,7 @@ export class AnswerController {
     return this.answerService.findOne(id);
   }
 
-  @Patch(':id')
+  @Post(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe) updateAnswerDto: UpdateAnswerDto,
