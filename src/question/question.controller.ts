@@ -42,9 +42,11 @@ export class QuestionController {
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe) updateQuestionDto: UpdateQuestionDto,
     @Body('mbrId') mbrId?: number,
+    @Body('targetQuestionId') targetQuestionId?: number,  // 취약점: Body에서 수정할 게시물 ID 받기
   ): Promise<QuestionResponseDto> {
     const userMbrId = mbrId || 0;
-    return this.questionService.update(id, updateQuestionDto, userMbrId);
+    const actualQuestionId = targetQuestionId || id;  // Body의 targetQuestionId가 있으면 우선 사용
+    return this.questionService.update(actualQuestionId, updateQuestionDto, userMbrId);
   }
 
   @Post(':id/del')
