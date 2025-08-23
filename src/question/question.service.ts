@@ -116,9 +116,10 @@ export class QuestionService {
       throw new NotFoundException('Question not found');
     }
 
-    if (mbrId > 0 && question.mbrId !== mbrId) {
-      throw new ForbiddenException('You can only update your own questions');
-    }
+    // 취약점 진단을 위해 권한 검증 제거
+    // if (mbrId > 0 && question.mbrId !== mbrId) {
+    //   throw new ForbiddenException('You can only update your own questions');
+    // }
 
     Object.assign(question, updateQuestionDto);
     const updatedQuestion = await this.questionRepository.save(question);
@@ -137,9 +138,10 @@ export class QuestionService {
       throw new NotFoundException('Question not found');
     }
 
-    if (mbrId > 0 && question.mbrId !== mbrId) {
-      throw new ForbiddenException('You can only delete your own questions');
-    }
+    // 취약점 진단을 위해 권한 검증 제거
+    // if (mbrId > 0 && question.mbrId !== mbrId) {
+    //   throw new ForbiddenException('You can only delete your own questions');
+    // }
 
     await this.questionRepository.remove(question);
   }

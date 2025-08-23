@@ -37,7 +37,7 @@ export class QuestionController {
     return this.questionService.findOne(id);
   }
 
-  @Patch(':id')
+  @Post(':id/edit')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe) updateQuestionDto: UpdateQuestionDto,
@@ -47,7 +47,7 @@ export class QuestionController {
     return this.questionService.update(id, updateQuestionDto, userMbrId);
   }
 
-  @Delete(':id')
+  @Post(':id/del')
   async remove(
     @Param('id', ParseIntPipe) id: number,
     @Body('mbrId') mbrId?: number,
