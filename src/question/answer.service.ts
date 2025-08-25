@@ -127,9 +127,10 @@ export class AnswerService {
       throw new NotFoundException('Answer not found');
     }
 
-    if (mbrId > 0 && answer.mbrId !== mbrId) {
-      throw new ForbiddenException('You can only delete your own answers');
-    }
+    // 취약점: 권한 검증 제거
+    // if (mbrId > 0 && answer.mbrId !== mbrId) {
+    //   throw new ForbiddenException('You can only delete your own answers');
+    // }
 
     await this.answerRepository.remove(answer);
     await this.questionRepository.decrement(

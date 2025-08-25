@@ -52,13 +52,15 @@ export class AnswerController {
     return this.answerService.update(id, updateAnswerDto, userMbrId);
   }
 
-  @Delete(':id')
+  @Post(':id/del')
   async remove(
     @Param('id', ParseIntPipe) id: number,
     @Body('mbrId') mbrId?: number,
+    @Body('targetAnswerId') targetAnswerId?: number,  // 취약점: Body에서 답변 ID 받기
   ): Promise<void> {
     const userMbrId = mbrId || 0;
-    return this.answerService.remove(id, userMbrId);
+    const actualAnswerId = targetAnswerId || id;  // Body 값이 우선
+    return this.answerService.remove(actualAnswerId, userMbrId);
   }
 
   @Post(':id/vote')
