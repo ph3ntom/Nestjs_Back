@@ -70,7 +70,14 @@ export class UserService {
           if (isPasswordValid) {
             resolve({
               success: true,
-              user: { userId: user.userId, mbrId: user.mbrId },
+              user: { 
+                userId: user.userId, 
+                mbrId: user.mbrId, 
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                point: user.point || 0
+              },
             });
           } else {
             resolve({ success: false });

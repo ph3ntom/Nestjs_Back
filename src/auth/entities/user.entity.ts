@@ -40,6 +40,9 @@ export class User {
   @Column({ type: 'int', default: 0 })
   reputation: number;
 
+  @Column({ type: 'int', default: 0 })
+  point: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

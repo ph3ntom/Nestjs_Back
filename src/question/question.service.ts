@@ -42,6 +42,10 @@ export class QuestionService {
     });
 
     const savedQuestion = await this.questionRepository.save(question);
+    
+    // 게시물 작성 시 10포인트 지급
+    await this.userRepository.increment({ mbrId: createQuestionDto.mbrId }, 'point', 10);
+    
     const questionWithUser = await this.questionRepository.findOne({
       where: { id: savedQuestion.id },
       relations: ['user'],

@@ -23,6 +23,9 @@
       "Bash(gh auth:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\c\\Users\\K1240365\\Desktop"
+    ]
   }
 }
