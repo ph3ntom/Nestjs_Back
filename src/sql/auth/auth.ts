@@ -75,7 +75,6 @@ export class UserService {
                 mbrId: user.mbrId, 
                 name: user.name,
                 email: user.email,
-                role: user.role,
                 point: user.point || 0
               },
             });

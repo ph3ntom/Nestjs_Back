@@ -28,6 +28,7 @@ export class LoginController {
         message: 'Login successful',
         userId: result.userId,
         mbrId: result.mbrId,
+        point: result.point,
         sessionId: req.session.id,
         code: '0000',
       };

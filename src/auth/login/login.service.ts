@@ -9,7 +9,7 @@ export class LoginService {
 
   async processLogin(
     loginDto: LoginDto,
-  ): Promise<{ success: boolean; userId?: string; mbrId?: number }> {
+  ): Promise<{ success: boolean; userId?: string; mbrId?: number; point?: number }> {
     const { userId, password } = loginDto;
 
     const result = await this.authService.login(loginDto);
@@ -20,6 +20,7 @@ export class LoginService {
         success: true,
         userId: result.user.userId,
         mbrId: result.user.mbrId,
+        point: result.user.point,
       };
     } else {
       console.log(`Authentication failed for user ${userId}.`);
