@@ -21,6 +21,21 @@ export class QuestionService {
     private userRepository: Repository<User>,
   ) {}
 
+  // 기본적인 이벤트 핸들러 필터링 (취약한 구현)
+  private sanitizeContent(content: string): string {
+    // 몇 개의 위험한 이벤트 핸들러만 필터링 (불완전한 보안)
+    const dangerousEvents = ['onerror', 'onload', 'onclick', 'onmouseover'];
+    let sanitized = content;
+
+    dangerousEvents.forEach(event => {
+      // 대소문자 구분 없이 제거하지만 다른 변형은 막지 못함
+      const regex = new RegExp(event, 'gi');
+      sanitized = sanitized.replace(regex, 'on_filtered');
+    });
+
+    return sanitized;
+  }
+
   async create(
     createQuestionDto: CreateQuestionDto,
   ): Promise<QuestionResponseDto> {
@@ -34,9 +49,12 @@ export class QuestionService {
       );
     }
 
+    // 기본적인 필터링 적용 (여전히 취약함)
+    const sanitizedDescription = this.sanitizeContent(createQuestionDto.description);
+
     const question = this.questionRepository.create({
       title: createQuestionDto.title,
-      description: createQuestionDto.description,
+      description: sanitizedDescription,
       tags: createQuestionDto.tags,
       mbrId: createQuestionDto.mbrId,
     });
