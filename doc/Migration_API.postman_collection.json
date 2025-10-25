@@ -275,7 +275,7 @@
   "variable": [
     {
       "key": "BASE_URL",
-      "value": "http://localhost:3001",
+      "value": "http://localhost:3001/api",
       "type": "string",
       "description": "API 서버 기본 URL"
     }

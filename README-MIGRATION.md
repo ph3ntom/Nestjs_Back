@@ -86,59 +86,59 @@ npm run typeorm:schema:drop
 #### 데이터베이스 관리
 ```bash
 # 데이터베이스 초기화
-POST http://localhost:3000/migration/init
+POST http://localhost:3001/api/migration/init
 
 # 마이그레이션 실행
-POST http://localhost:3000/migration/run
+POST http://localhost:3001/api/migration/run
 
 # 마이그레이션 되돌리기
-POST http://localhost:3000/migration/revert
+POST http://localhost:3001/api/migration/revert
 
 # 데이터베이스 상태 확인
-GET http://localhost:3000/migration/status
+GET http://localhost:3001/api/migration/status
 ```
 
 #### 테스트 데이터 관리
 ```bash
 # 테스트 데이터 생성
-POST http://localhost:3000/migration/seed
+POST http://localhost:3001/api/migration/seed
 # 또는
 npm run db:seed
 
 # 테스트 데이터 삭제
-DELETE http://localhost:3000/migration/clear
+DELETE http://localhost:3001/api/migration/clear
 ```
 
 #### 마이그레이션 테스트 및 검증
 ```bash
 # 마이그레이션 상태 확인
-GET http://localhost:3000/migration/migrations
+GET http://localhost:3001/api/migration/migrations
 # 또는
 npm run db:status
 
 # 사용자 데이터 검증
-GET http://localhost:3000/migration/validate-users
+GET http://localhost:3001/api/migration/validate-users
 # 또는
 npm run db:validate
 
 # 마이그레이션 테스트 실행
-POST http://localhost:3000/migration/test
+POST http://localhost:3001/api/migration/test
 # 또는
 npm run db:test
 
 # 완전한 데이터베이스 테스트
-POST http://localhost:3000/migration/full-test
+POST http://localhost:3001/api/migration/full-test
 # 또는
 npm run db:full-test
 
 # 특정 마이그레이션까지 실행
-POST http://localhost:3000/migration/run-to/AddTestUsers1722000001000
+POST http://localhost:3001/api/migration/run-to/AddTestUsers1722000001000
 ```
 
 #### 스키마 동기화 (개발환경에서만)
 ```bash
 # 스키마 동기화
-POST http://localhost:3000/migration/sync
+POST http://localhost:3001/api/migration/sync
 ```
 
 ### 테스트 실행

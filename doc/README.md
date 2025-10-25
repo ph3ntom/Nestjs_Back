@@ -72,7 +72,7 @@ npm run start:dev
 npm run migration:test
 
 # API 상태 확인
-curl -X GET http://localhost:3001/migration/status
+curl -X GET http://localhost:3001/api/migration/status
 ```
 
 ## 📊 주요 기능
@@ -133,7 +133,7 @@ npm run typeorm:migration:run
 npm run migration:test
 
 # 5. 검증
-curl -X GET http://localhost:3001/migration/validate-users
+curl -X GET http://localhost:3001/api/migration/validate-users
 ```
 
 ### 문제 발생 시 대응
@@ -145,7 +145,7 @@ npm run db:status
 npm run typeorm:migration:revert
 
 # 3. 데이터 정리
-curl -X DELETE http://localhost:3001/migration/clear
+curl -X DELETE http://localhost:3001/api/migration/clear
 
 # 4. 전체 재실행
 npm run db:reset

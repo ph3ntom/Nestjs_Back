@@ -281,7 +281,7 @@ node test-migration.js
 2. **테스트 스크립트의 포트 확인:**
 ```javascript
 // test-migration.js
-const API_BASE = 'http://localhost:3001/migration';  // 포트 확인
+const API_BASE = 'http://localhost:3001/api/migration';  // 포트 확인
 ```
 
 ---
@@ -302,7 +302,7 @@ const API_BASE = 'http://localhost:3001/migration';  // 포트 확인
 **해결방법:**
 ```bash
 # 1. 테스트 데이터 삭제
-curl -X DELETE http://localhost:3001/migration/clear
+curl -X DELETE http://localhost:3001/api/migration/clear
 
 # 2. 마이그레이션 되돌리기
 npm run typeorm:migration:revert
@@ -311,7 +311,7 @@ npm run typeorm:migration:revert
 npm run typeorm:migration:run
 
 # 4. 검증
-curl -X GET http://localhost:3001/migration/validate-users
+curl -X GET http://localhost:3001/api/migration/validate-users
 ```
 
 ---
@@ -354,7 +354,7 @@ npm run typeorm -- migration:show -d ormconfig.ts
 netstat -tulpn | grep :3001
 
 # API 엔드포인트 테스트
-curl -v http://localhost:3001/migration/status
+curl -v http://localhost:3001/api/migration/status
 ```
 
 ---

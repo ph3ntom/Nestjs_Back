@@ -3,7 +3,7 @@
 ## 📋 개요
 이 문서는 NestJS 마이그레이션 시스템의 REST API 명세를 제공합니다.
 
-**Base URL**: `http://localhost:3001` (기본 포트, 환경에 따라 변경 가능)
+**Base URL**: `http://localhost:3001/api` (기본 포트, 환경에 따라 변경 가능)
 
 ## 🔐 인증
 현재 버전에서는 인증이 필요하지 않습니다. (개발/테스트 환경용)
@@ -417,34 +417,34 @@ npm run migration:test
 ### 시나리오 1: 초기 설정
 ```bash
 # 1. 데이터베이스 초기화
-curl -X POST http://localhost:3001/migration/init
+curl -X POST http://localhost:3001/api/migration/init
 
 # 2. 테스트 데이터 생성
-curl -X POST http://localhost:3001/migration/seed
+curl -X POST http://localhost:3001/api/migration/seed
 
 # 3. 상태 확인
-curl -X GET http://localhost:3001/migration/status
+curl -X GET http://localhost:3001/api/migration/status
 ```
 
 ### 시나리오 2: 마이그레이션 관리
 ```bash
 # 1. 마이그레이션 상태 확인
-curl -X GET http://localhost:3001/migration/migrations
+curl -X GET http://localhost:3001/api/migration/migrations
 
 # 2. 마이그레이션 테스트
-curl -X POST http://localhost:3001/migration/test
+curl -X POST http://localhost:3001/api/migration/test
 
 # 3. 마이그레이션 되돌리기
-curl -X POST http://localhost:3001/migration/revert
+curl -X POST http://localhost:3001/api/migration/revert
 ```
 
 ### 시나리오 3: 데이터 검증
 ```bash
 # 1. 사용자 데이터 검증
-curl -X GET http://localhost:3001/migration/validate-users
+curl -X GET http://localhost:3001/api/migration/validate-users
 
 # 2. 전체 테스트
-curl -X POST http://localhost:3001/migration/full-test
+curl -X POST http://localhost:3001/api/migration/full-test
 ```
 
 ---

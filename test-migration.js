@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const util = require('util');
 const execAsync = util.promisify(exec);
 
-const API_BASE = 'http://localhost:3001/migration';
+const API_BASE = 'http://localhost:3001/api/migration';
 
 async function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -117,7 +117,7 @@ async function testMigrationSystem() {
 // 서버가 실행 중인지 확인
 async function checkServer() {
   try {
-    const { stdout } = await execAsync('curl -s http://localhost:3001/migration/status 2>/dev/null || echo "Server not running"');
+    const { stdout } = await execAsync('curl -s http://localhost:3001/api/migration/status 2>/dev/null || echo "Server not running"');
     if (stdout.includes('Server not running') || stdout.includes('Connection refused')) {
       console.log('❌ Server is not running. Please start the server first:');
       console.log('   npm run start:dev');

@@ -166,11 +166,11 @@ tester    - test123!   (USER)
     "typeorm:schema:drop": "npm run typeorm -- schema:drop -d ormconfig.ts",
     "db:init": "npm run build && npm run typeorm:migration:run",
     "db:reset": "npm run typeorm:schema:drop && npm run typeorm:migration:run",
-    "db:seed": "curl -X POST http://localhost:3001/migration/seed",
-    "db:test": "curl -X POST http://localhost:3001/migration/test",
-    "db:validate": "curl -X GET http://localhost:3001/migration/validate-users",
-    "db:full-test": "curl -X POST http://localhost:3001/migration/full-test",
-    "db:status": "curl -X GET http://localhost:3001/migration/migrations",
+    "db:seed": "curl -X POST http://localhost:3001/api/migration/seed",
+    "db:test": "curl -X POST http://localhost:3001/api/migration/test",
+    "db:validate": "curl -X GET http://localhost:3001/api/migration/validate-users",
+    "db:full-test": "curl -X POST http://localhost:3001/api/migration/full-test",
+    "db:status": "curl -X GET http://localhost:3001/api/migration/migrations",
     "migration:test": "node test-migration.js"
   }
 }
