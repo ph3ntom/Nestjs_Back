@@ -28,9 +28,8 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'http://127.0.0.1:3000',
-      'http://192.168.60.135',      // 프론트엔드 서버
-      'http://192.168.60.135:80',
-      'http://192.168.60.135:3000', // Next.js 개발 서버
+      'http://192.168.206.129:80',      // 프론트엔드 서버,
+      'http://192.168.206.129:3000', // Next.js 개발 서버
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
